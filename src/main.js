@@ -128,8 +128,14 @@ import TreeSelect from 'primevue/treeselect';
 import TreeTable from 'primevue/treetable';
 import VirtualScroller from 'primevue/virtualscroller';
 
+import { createPinia } from 'pinia'
+import router from './router'
+
 
 const app = createApp(App);
+
+app.use(createPinia())
+app.use(router)
 
 app.use(PrimeVue, {
     theme: {
