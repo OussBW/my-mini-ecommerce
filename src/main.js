@@ -8,7 +8,7 @@ import App from "./App.vue";
 import PrimeVue from "primevue/config";
 import AppState from "./plugins/appState.js";
 import Noir from "./presets/Noir.js";
-import ThemeSwitcher from "./components/ThemeSwitcher.vue";
+import ThemeSwitcher from "./components/atoms/HeaderRight.vue";
 import ConfirmationService from "primevue/confirmationservice";
 import DialogService from "primevue/dialogservice";
 import OverlayBadge from "primevue/overlaybadge";

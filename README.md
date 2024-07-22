@@ -8,6 +8,7 @@ Already packed:
 - Layout selection (grid/list)
 - Pagination
 - Cart management (add/remove products to/from cart)
+- Product Details
 - Dark Theme toggle
 
 In progress:
