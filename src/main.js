@@ -8,7 +8,6 @@ import App from "./App.vue";
 import PrimeVue from "primevue/config";
 import AppState from "./plugins/appState.js";
 import Noir from "./presets/Noir.js";
-import ThemeSwitcher from "./components/atoms/HeaderRight.vue";
 import ConfirmationService from "primevue/confirmationservice";
 import DialogService from "primevue/dialogservice";
 import OverlayBadge from "primevue/overlaybadge";
@@ -59,6 +58,5 @@ app.component("Step", Step);
 app.component("StepPanel", StepPanel);
 app.component("Toast", Toast);
 app.component("ToggleSwitch", ToggleSwitch);
-app.component("ThemeSwitcher", ThemeSwitcher);
 
 app.mount("#app");
