@@ -1,6 +1,24 @@
 # my-mini-ecommerce
-A mini e-commerce gallery for POC purposes
+A mini e-shop gallery for POC purposes =)
 
+## Features
+
+Already packed:
+- Product Listing
+- Layout selection (grid/list)
+- Pagination
+- Cart management (add/remove products to/from cart)
+- Dark Theme toggle
+
+In progress:
+
+- Sorting
+- Filters
+- Search
+- Rate Product
+- Add to favorites
+- Select Delivery Options
+- Payment form
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
@@ -33,8 +51,10 @@ npm run build
 npm run test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Used Libraries
 
-```sh
-npm run lint
-```
+Here's a list of used libraries and tools:
+
+- [Primevue](https://primevue.org/) : an excellent UI component library for Vuejs developed by the legendary PrimeFaces team.
+- [TailwindCSS](https://tailwindcss.com): a useful CSS framework for styling with classes.
+- [Fake Store API](https://fakestoreapi.com): it's all in the name!
