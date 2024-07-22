@@ -54,4 +54,7 @@ defineProps({
     },
   },
 });
+
+const firstItemClass =
+  "[&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-surface-200 [&:not(:first-of-type)]:dark:border-surface-700";
 </script>

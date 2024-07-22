@@ -6,10 +6,13 @@ export const useProductStore = defineStore('product', () => {
   const products = ref([{}]);
 
   const loadProducts = () => 
-    ProductService.getProducts().then(
+    ProductService.getProductsData().then(
       ({ data }) => {
         products.value = data
       }
     );
-  return { products, loadProducts }
+
+  const loadProductById = async (id) => await ProductService.getProductById(id)
+
+  return { products, loadProducts, loadProductById }
 })

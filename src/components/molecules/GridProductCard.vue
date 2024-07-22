@@ -26,12 +26,14 @@
               class="font-medium text-surface-500 dark:text-surface-400 text-sm"
               >{{ item.category }}</span
             >
-            <div
-              class="text-lg font-medium mt-1 md:max-w-64 overflow-ellipsis md:text-nowrap overflow-hidden"
-              :title="item.title" 
-            >
-              {{ item.title }}
-            </div>
+            <RouterLink :to="{ name: 'productDetails', params: { product: item.id } }">
+              <div
+                class="text-lg font-medium mt-1 md:max-w-64 overflow-ellipsis md:text-nowrap overflow-hidden"
+                :title="item.title"
+              >
+                {{ item.title }}
+              </div>
+            </RouterLink>
           </div>
           <ProductRating :rating="getRating(item)" />
         </div>
@@ -52,7 +54,7 @@ defineProps({
   },
 });
 
-const getRating = (item) => item.rating.rate.toString()
+const getRating = (item) => item.rating.rate.toString();
 const getInventoryStatus = () => "INSTOCK";
 const getSeverity = (product) => {
   return "success";

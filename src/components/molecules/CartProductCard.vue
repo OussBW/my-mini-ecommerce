@@ -3,15 +3,15 @@
     class="flex flex-col sm:flex-row sm:items-center p-6 gap-4"
     :class="[firstItemClass]"
   >
-    <div class="md:w-40 relative">
+    <div class="md:w-30 relative">
       <img
-        class="block xl:block mx-auto rounded w-full h-[200px]"
-        :src="item.image"
-        :alt="item.title"
+        class="block xl:block mx-auto rounded w-full h-[100px]"
+        :src="product.image"
+        :alt="product.title"
       />
       <Tag
         value="INSTOCK"
-        :severity="getSeverity(item)"
+        :severity="getSeverity(product)"
         class="absolute dark:!bg-surface-900"
         style="left: 4px; top: 4px"
       ></Tag>
@@ -23,36 +23,29 @@
         <div>
           <span
             class="font-medium text-surface-500 dark:text-surface-400 text-sm"
-            >{{ item.category }}</span
+            >{{ product.category }}</span
           >
-          <div class="text-lg font-medium mt-2">{{ item.title }}</div>
+          <div class="text-lg font-medium mt-2">{{ product.name }}</div>
         </div>
-        <ProductRating :rating="getRating(item)" />
-        <Panel v-if="showDescription" header="Description">
-          <p class="m-0">
-            {{ item.description }}
-          </p>
-        </Panel>
+        <ProductRating :rating="getRating(product)" />
       </div>
-      <ProductActions :product="item" is-list />
+      <CartProductActions :product :quantity />
     </div>
   </div>
 </template>
 
 <script setup>
-import ProductActions from "../atoms/ProductActions.vue";
+import CartProductActions from "../atoms/CartProductActions.vue";
 import ProductRating from "../atoms/ProductRating.vue";
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
-  showDescription: {
-    type: Boolean,
-    default: false,
-  },
 });
+
+const { product, quantity } = props.item
 
 const getRating = (item) => item.rating.rate.toString();
 const getSeverity = (product) => {

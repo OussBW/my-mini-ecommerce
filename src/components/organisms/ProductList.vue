@@ -1,5 +1,4 @@
 <template>
-  <ThemeSwitcher />
   <div class="card">
     <DataView :value="products" :layout="layout" paginator :rows="rows.value">
       <template #header>
@@ -8,7 +7,7 @@
             v-model="rows"
             :options="rowsOptions"
             optionLabel="label"
-            placeholder="Items to display"
+            placeholder="Items per page"
           />
           <SelectButton v-model="layout" :options="options" :allowEmpty="false">
             <template #option="{ option }">
@@ -27,8 +26,6 @@
               v-for="(item, index) in slotProps.items"
               :key="index"
               :item
-              layout="list"
-              :loading
             />
           </template>
         </div>

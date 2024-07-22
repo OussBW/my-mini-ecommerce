@@ -1,13 +1,15 @@
 <template>
+    <Toast />
   <div v-if="isList" class="flex flex-col md:items-end gap-8">
     <span class="text-xl font-semibold">${{ product.price }}</span>
     <div class="flex flex-row-reverse md:flex-row gap-2">
       <Button icon="pi pi-heart" outlined></Button>
       <Button
-        icon="pi pi-shopping-cart"
-        label="Buy Now"
-        :disabled="product?.inventoryStatus === 'OUTOFSTOCK'"
+        :icon="!loading ? 'pi pi-shopping-cart' : 'pi pi-spin pi-spinner'"
+        :disabled="loading"
+        label="Add to cart"
         class="flex-auto md:flex-initial whitespace-nowrap"
+        @click="addProductToCart"
       ></Button>
     </div>
   </div>
@@ -16,10 +18,11 @@
     <span class="text-2xl font-semibold">${{ product.price }}</span>
     <div class="flex gap-2">
       <Button
-        icon="pi pi-shopping-cart"
-        label="Buy Now"
-        :disabled="product?.inventoryStatus === 'OUTOFSTOCK'"
+        :icon="!loading ? 'pi pi-shopping-cart' : 'pi pi-spin pi-spinner'"
+        label="Add to cart"
+        :disabled="loading"
         class="flex-auto whitespace-nowrap"
+        @click="addProductToCart"
       ></Button>
       <Button icon="pi pi-heart" outlined></Button>
     </div>
@@ -27,8 +30,32 @@
 </template>
 
 <script setup>
-defineProps({
+import { ref } from "vue";
+import { useCartStore } from "../../stores/cart";
+import { useToast } from "primevue/usetoast";
+
+const props = defineProps({
   product: { type: Object, required: true },
   isList: { type: Boolean, default: false },
 });
+
+const { addToCart } = useCartStore();
+const toast = useToast();
+const loading = ref(false);
+
+const addProductToCart = () => {
+  loading.value = true;
+
+  // I used a setTimeout to simulate an API call
+  setTimeout(() => {
+    addToCart(props.product);
+    loading.value = false;
+    toast.add({
+      severity: "success",
+      summary: "Done!",
+      detail: "Product added to cart",
+      life: 3000,
+    });
+  }, 2000);
+};
 </script>
