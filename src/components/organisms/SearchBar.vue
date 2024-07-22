@@ -9,7 +9,7 @@
       :suggestions="filteredProducts"
       @complete="search"
       @item-select="onSelectItem"
-      placeholder="Search..."
+      :placeholder="$t('toolbar.search')"
     >
       <template #option="slotProps">
         <SearchProductCard :item="slotProps.option" />

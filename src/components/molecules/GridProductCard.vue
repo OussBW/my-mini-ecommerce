@@ -12,7 +12,7 @@
             style="max-width: 300px"
           />
           <Tag
-            :value="getInventoryStatus()"
+            :value="$t('product.instock')"
             :severity="getSeverity(item)"
             class="absolute dark:!bg-surface-900"
             style="left: 4px; top: 4px"
@@ -26,7 +26,9 @@
               class="font-medium text-surface-500 dark:text-surface-400 text-sm"
               >{{ item.category }}</span
             >
-            <RouterLink :to="{ name: 'productDetails', params: { product: item.id } }">
+            <RouterLink
+              :to="{ name: 'productDetails', params: { product: item.id } }"
+            >
               <div
                 class="text-lg font-medium mt-1 md:max-w-64 overflow-ellipsis md:text-nowrap overflow-hidden"
                 :title="item.title"
@@ -55,21 +57,7 @@ defineProps({
 });
 
 const getRating = (item) => item.rating.rate.toString();
-const getInventoryStatus = () => "INSTOCK";
-const getSeverity = (product) => {
+const getSeverity = () => {
   return "success";
-  // switch (product.inventoryStatus) {
-  //   case "INSTOCK":
-  //     return "success";
-
-  //   case "LOWSTOCK":
-  //     return "warn";
-
-  //   case "OUTOFSTOCK":
-  //     return "danger";
-
-  //   default:
-  //     return null;
-  // }
 };
 </script>

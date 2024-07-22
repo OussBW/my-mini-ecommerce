@@ -10,7 +10,7 @@
         :alt="item.title"
       />
       <Tag
-        value="INSTOCK"
+        :value="$t('product.instock')"
         :severity="getSeverity(item)"
         class="absolute dark:!bg-surface-900"
         style="left: 4px; top: 4px"
@@ -55,21 +55,8 @@ defineProps({
 });
 
 const getRating = (item) => item.rating.rate.toString();
-const getSeverity = (product) => {
+const getSeverity = () => {
   return "success";
-  // switch (product.inventoryStatus) {
-  //   case "INSTOCK":
-  //     return "success";
-
-  //   case "LOWSTOCK":
-  //     return "warn";
-
-  //   case "OUTOFSTOCK":
-  //     return "danger";
-
-  //   default:
-  //     return null;
-  // }
 };
 
 const firstItemClass =

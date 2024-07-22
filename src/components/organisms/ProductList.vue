@@ -15,20 +15,20 @@
               v-model="rows"
               :options="rowsOptions"
               optionLabel="label"
-              placeholder="Items per page"
+              :placeholder="$t('productList.itemsPerPage')"
             />
             <Select
               v-model="sortKey"
               :options="sortOptions"
               optionLabel="label"
-              placeholder="Sort By"
+              :placeholder="$t('productList.sort')"
               class="ml-2"
               @change="onSortChange($event)"
             />
             <OverlayBadge v-if="hasFilters" severity="danger">
               <Button
                 class="ml-2"
-                label="Filter"
+                :label="$t('productList.filter')"
                 icon="pi pi-filter"
                 outlined
                 @click="showFilters = !showFilters"
@@ -38,7 +38,7 @@
             <Button
               v-else
               class="ml-2"
-              label="Filter"
+              :label="$t('productList.filter')"
               icon="pi pi-filter"
               outlined
               @click="showFilters = !showFilters"

@@ -45,7 +45,7 @@ import MultiSelectFilter from "../atoms/MultiSelectFilter.vue";
 import { reactive } from "vue";
 import RangeFilter from "../atoms/RangeFilter.vue";
 
-const { productCategories, priceRanges, productFilters, filteredProducts } =
+const { productCategories, priceRanges, productFilters } =
   storeToRefs(useProductStore());
 
 const filters = reactive({
