@@ -10,12 +10,12 @@ Already packed:
 - Cart management (add/remove products to/from cart)
 - Product Details
 - Dark Theme toggle
-
-In progress:
-
+- Search
 - Sorting
 - Filters
-- Search
+- Multilanguage with locale switcher
+
+In progress:
 - Rate Product
 - Add to favorites
 - Select Delivery Options
