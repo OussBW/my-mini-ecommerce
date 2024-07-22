@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <DataView
-      :value="products"
+      :value="filteredProducts"
       :layout="layout"
       paginator
       :rows="rows.value"
@@ -24,6 +24,24 @@
               placeholder="Sort By"
               class="ml-2"
               @change="onSortChange($event)"
+            />
+            <OverlayBadge v-if="hasFilters" severity="danger">
+              <Button
+                class="ml-2"
+                label="Filter"
+                icon="pi pi-filter"
+                outlined
+                @click="showFilters = !showFilters"
+              />
+            </OverlayBadge>
+
+            <Button
+              v-else
+              class="ml-2"
+              label="Filter"
+              icon="pi pi-filter"
+              outlined
+              @click="showFilters = !showFilters"
             />
           </div>
           <SelectButton v-model="layout" :options="options" :allowEmpty="false">
@@ -64,22 +82,33 @@
         </div>
       </template>
     </DataView>
+    <ProductFiltersPanel v-model="showFilters" />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useProductStore } from "../../stores/product";
 import ListProductCard from "../molecules/ListProductCard.vue";
 import GridProductCard from "../molecules/GridProductCard.vue";
 import ProductCardSkeleton from "../molecules/ProductCardSkeleton.vue";
+import ProductFiltersPanel from "./ProductFiltersPanel.vue";
 
-const { products } = storeToRefs(useProductStore());
+const { filteredProducts, productFilters } = storeToRefs(useProductStore());
+const hasFilters = computed(() => {
+  return (
+    productFilters.value?.categories?.length ||
+    productFilters.value?.prices?.length
+  );
+});
 const { loadProducts } = useProductStore();
 const loading = ref(true);
 const layout = ref("grid");
 const options = ref(["list", "grid"]);
+const rows = ref({ value: 5 });
+const showFilters = ref(false);
+//sorting
 const sortOptions = ref([
   { label: "Price High to Low", value: "!price" },
   { label: "Price Low to High", value: "price" },
@@ -95,7 +124,6 @@ const rowsOptions = ref([
   { label: "6", value: 6 },
   { label: "12", value: 12 },
 ]);
-const rows = ref({ value: 5 });
 
 const onSortChange = (event) => {
   const value = event.value.value;

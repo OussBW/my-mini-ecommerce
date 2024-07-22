@@ -11,7 +11,7 @@ import Noir from "./presets/Noir.js";
 import ConfirmationService from "primevue/confirmationservice";
 import DialogService from "primevue/dialogservice";
 import OverlayBadge from "primevue/overlaybadge";
-import Stepper from 'primevue/stepper';
+import Drawer from 'primevue/drawer';
 import StepList from 'primevue/steplist';
 import StepPanels from 'primevue/steppanels';
 import StepItem from 'primevue/stepitem';
@@ -58,5 +58,6 @@ app.component("Step", Step);
 app.component("StepPanel", StepPanel);
 app.component("Toast", Toast);
 app.component("ToggleSwitch", ToggleSwitch);
+app.component("Drawer", Drawer);
 
 app.mount("#app");
