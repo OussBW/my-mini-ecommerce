@@ -1,6 +1,6 @@
 import "primeicons/primeicons.css";
-import "./style.css";
-import "./flags.css";
+import "@/assets/css/style.css";
+import "@/assets/css/flags.css";
 
 import { createApp } from "vue";
 import App from "./App.vue";
@@ -11,12 +11,12 @@ import Noir from "./presets/Noir.js";
 import ConfirmationService from "primevue/confirmationservice";
 import DialogService from "primevue/dialogservice";
 import OverlayBadge from "primevue/overlaybadge";
-import Drawer from 'primevue/drawer';
-import StepList from 'primevue/steplist';
-import StepPanels from 'primevue/steppanels';
-import StepItem from 'primevue/stepitem';
-import Step from 'primevue/step';
-import StepPanel from 'primevue/steppanel';
+import Drawer from "primevue/drawer";
+import StepList from "primevue/steplist";
+import StepPanels from "primevue/steppanels";
+import StepItem from "primevue/stepitem";
+import Step from "primevue/step";
+import StepPanel from "primevue/steppanel";
 import Ripple from "primevue/ripple";
 import Select from "primevue/select";
 import StyleClass from "primevue/styleclass";
@@ -32,7 +32,7 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
-app.use(i18n)
+app.use(i18n);
 
 app.use(PrimeVue, {
   theme: {

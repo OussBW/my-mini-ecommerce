@@ -3,7 +3,7 @@ export default {
     search: "Search...",
   },
   productList: {
-    itemsPerPage: "Items peeer page",
+    itemsPerPage: "Items per page",
     sort: "Sort By",
     filter: "Filter",
   },

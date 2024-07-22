@@ -31,31 +31,13 @@
 
 <script setup>
 import { ref } from "vue";
-import { useCartStore } from "../../stores/cart";
-import { useToast } from "primevue/usetoast";
+import { useProductActions } from "../../composables/productActions";
 
 const props = defineProps({
   product: { type: Object, required: true },
   isList: { type: Boolean, default: false },
 });
 
-const { addToCart } = useCartStore();
-const toast = useToast();
 const loading = ref(false);
-
-const addProductToCart = () => {
-  loading.value = true;
-
-  // I used a setTimeout to simulate an API call
-  setTimeout(() => {
-    addToCart(props.product);
-    loading.value = false;
-    toast.add({
-      severity: "success",
-      summary: "Done!",
-      detail: "Product added to cart",
-      life: 3000,
-    });
-  }, 2000);
-};
+const { addProductToCart } = useProductActions(loading, props.product);
 </script>

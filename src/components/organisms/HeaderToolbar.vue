@@ -8,7 +8,7 @@
       >
         <img
           class="object-cover h-full w-full"
-          src="@/assets/logo.png"
+          src="@/assets/img/logo.png"
           alt="logo"
         />
       </RouterLink>
