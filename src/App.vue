@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HeaderToolbar from "./components/organisms/HeaderToolbar.vue";
+import HeaderToolbar from "@/components/organisms/HeaderToolbar.vue";
 </script>
 
 <template>
