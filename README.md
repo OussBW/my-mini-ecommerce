@@ -20,6 +20,19 @@ In progress:
 - Add to favorites
 - Select Delivery Options
 - Payment form
+
+
+## Architecture & Technical choices breakdown
+
+### Architecture
+I chose to organise this project according to the Atomic Design, since it enhances code reusage, maintainance, and provides comprehensive navigation through the components by easily establishing the logic links between them.
+
+### Technical stack
+- **Vuejs:** is an evident choice since it's the framework with which I've been working for years now.
+- **PrimeVue:** a nice discovery during my last mission, very rich UI library with an excellent documentation and easy plug & code.
+- **TailwindCSS:** one of the most known CSS frameworks, an easy choice for high speed styling.
+- **JS over TS:** Typescript is a very good choice for code quality and maintanance insurance, but classic Javascript is better for quick development. Also, there are some plugins that are not (yet) very compatible with typescript.
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).

@@ -4,12 +4,14 @@ import "@/assets/css/flags.css";
 
 import { createApp } from "vue";
 import App from "./App.vue";
+import { createPinia } from "pinia";
+import router from "./router";
+import i18n from "./i18n/index.js";
 // PrimeVue stuff
 import PrimeVue from "primevue/config";
-import AppState from "./plugins/appState.js";
 import Noir from "./presets/Noir.js";
-import ConfirmationService from "primevue/confirmationservice";
-import DialogService from "primevue/dialogservice";
+// import ConfirmationService from "primevue/confirmationservice";
+// import DialogService from "primevue/dialogservice";
 import OverlayBadge from "primevue/overlaybadge";
 import Drawer from "primevue/drawer";
 import StepList from "primevue/steplist";
@@ -24,16 +26,12 @@ import ToggleSwitch from "primevue/toggleswitch";
 import Toast from "primevue/toast";
 import ToastService from "primevue/toastservice";
 
-import { createPinia } from "pinia";
-import router from "./router";
-import i18n from "./i18n/index.js";
 
 const app = createApp(App);
-
 app.use(createPinia());
 app.use(router);
 app.use(i18n);
-
+// activate PrimeVue theming
 app.use(PrimeVue, {
   theme: {
     preset: Noir,
@@ -44,10 +42,9 @@ app.use(PrimeVue, {
     },
   },
 });
-app.use(AppState);
-app.use(ConfirmationService);
+// app.use(ConfirmationService);
 app.use(ToastService);
-app.use(DialogService);
+// app.use(DialogService);
 
 app.directive("ripple", Ripple);
 app.directive("styleclass", StyleClass);
