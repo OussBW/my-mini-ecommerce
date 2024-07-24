@@ -3,23 +3,21 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", () => {
   const cart = ref([]);
+  // total value of cart's items
   const cartTotalValue = computed(() =>
-    cart.value.reduce(
-      (acc, {product, quantity}) =>
-        acc + quantity * product.price, 0
-    ).toFixed(2)
+    cart.value
+      .reduce((acc, { product, quantity }) => acc + quantity * product.price, 0)
+      .toFixed(2)
   );
 
+  // number of items in the cart
   const cartTotalItemsCount = computed(() =>
-    cart.value.reduce(
-      (acc, {quantity}) =>
-        acc + quantity, 0
-    )
+    cart.value.reduce((acc, { quantity }) => acc + quantity, 0)
   );
 
   const getCartItemById = (productId) => {
     return cart.value.find((item) => item.product.id === productId) ?? {};
-  }
+  };
 
   const addToCart = (product) => {
     const cartItem = cart.value.find((item) => item.product.id === product.id);
@@ -45,5 +43,12 @@ export const useCartStore = defineStore("cart", () => {
     }
   };
 
-  return { cart, cartTotalItemsCount, cartTotalValue, getCartItemById, addToCart, removeFromCart };
+  return {
+    cart,
+    cartTotalItemsCount,
+    cartTotalValue,
+    getCartItemById,
+    addToCart,
+    removeFromCart,
+  };
 });

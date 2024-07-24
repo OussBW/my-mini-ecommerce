@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card !p-4">
     <DataView
       :value="filteredProducts"
       :layout="layout"
@@ -9,8 +9,10 @@
       :sortField
     >
       <template #header>
-        <div class="flex justify-between">
-          <div class="flex justify-between">
+        <div
+          class="flex justify-between w-full flex-wrap md:flex-nowrap items-start"
+        >
+          <div class="flex justify-between flex-wrap md:justify-start w-full mb-2">
             <Select
               v-model="rows"
               :options="rowsOptions"
@@ -25,9 +27,12 @@
               class="ml-2"
               @change="onSortChange($event)"
             />
+          </div>
+          <div class="flex justify-between w-full md:justify-end">
+            <!-- display a small badge if any filters are activated -->
             <OverlayBadge v-if="hasFilters" severity="danger">
               <Button
-                class="ml-2"
+                class="mr-2"
                 :label="$t('productList.filter')"
                 icon="pi pi-filter"
                 outlined
@@ -37,18 +42,24 @@
 
             <Button
               v-else
-              class="ml-2"
+              class="mr-2"
               :label="$t('productList.filter')"
               icon="pi pi-filter"
               outlined
               @click="showFilters = !showFilters"
             />
+            <SelectButton
+              v-model="layout"
+              :options="options"
+              :allowEmpty="false"
+            >
+              <template #option="{ option }">
+                <i
+                  :class="[option === 'list' ? 'pi pi-bars' : 'pi pi-table']"
+                />
+              </template>
+            </SelectButton>
           </div>
-          <SelectButton v-model="layout" :options="options" :allowEmpty="false">
-            <template #option="{ option }">
-              <i :class="[option === 'list' ? 'pi pi-bars' : 'pi pi-table']" />
-            </template>
-          </SelectButton>
         </div>
       </template>
       <template #list="slotProps">
@@ -87,17 +98,28 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, defineAsyncComponent } from "vue";
 import { storeToRefs } from "pinia";
 import { useProductStore } from "../../stores/product";
 import { useSort } from "../../composables/sort";
-import ListProductCard from "../molecules/ListProductCard.vue";
-import GridProductCard from "../molecules/GridProductCard.vue";
-import ProductCardSkeleton from "../molecules/ProductCardSkeleton.vue";
-import ProductFiltersPanel from "./ProductFiltersPanel.vue";
 
-const { sortOptions, sortKey, sortOrder, sortField, onSortChange } = useSort()
+// lazy loading some components for better perf
+const GridProductCard = defineAsyncComponent(
+  () => import("../molecules/GridProductCard.vue")
+);
+const ProductCardSkeleton = defineAsyncComponent(
+  () => import("../molecules/ProductCardSkeleton.vue")
+);
+const ProductFiltersPanel = defineAsyncComponent(
+  () => import("./ProductFiltersPanel.vue")
+);
+const ListProductCard = defineAsyncComponent(
+  () => import("../molecules/ListProductCard.vue")
+);
+
+const { sortOptions, sortKey, sortOrder, sortField, onSortChange } = useSort();
 const { filteredProducts, productFilters } = storeToRefs(useProductStore());
+
 const hasFilters = computed(() => {
   return (
     productFilters.value?.categories?.length ||

@@ -6,6 +6,7 @@ export const useProductStore = defineStore("product", () => {
   const products = ref([{}]);
   const productFilters = ref({});
 
+  // product list with filters applied
   const filteredProducts = computed(() => {
     const { categories, prices } = productFilters.value;
     let filteredItems = products.value;
@@ -29,6 +30,7 @@ export const useProductStore = defineStore("product", () => {
     )
   );
 
+  // minimum and maximum product prices
   const priceRanges = computed(() => {
     const prices = products.value.map(({ price }) => price ?? 0);
     return [Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))];

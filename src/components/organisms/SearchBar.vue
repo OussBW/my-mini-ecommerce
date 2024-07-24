@@ -1,5 +1,5 @@
 <template>
-  <InputGroup>
+  <InputGroup class="w-full">
     <InputGroupAddon>
       <i class="pi pi-search"></i>
     </InputGroupAddon>
