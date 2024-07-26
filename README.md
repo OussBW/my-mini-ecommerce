@@ -18,6 +18,7 @@ A mini e-shop gallery for POC purposes =)
 - Add to favorites
 - Breadcrumbs
 - Image preview (product details)
+- Vitest UI with coverage stats (dev mode)
 
 **In progress:**
 - Select Delivery Options
@@ -64,8 +65,15 @@ npm run build
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-npm run test:unit
+npm run test
 ```
+
+### Run [Vitest UI](https://vitest.dev/guide/ui.html) with coverage
+
+```sh
+npm run test-ui
+```
+![vitest UI](src/assets/img/vitestUI.png)
 
 ## Used Libraries
 

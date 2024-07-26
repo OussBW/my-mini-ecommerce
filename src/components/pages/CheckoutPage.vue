@@ -1,6 +1,6 @@
 <template>
   <div class="card flex justify-center">
-    <Stepper value="1" class="basis-[50rem]">
+    <Stepper value="1" class="basis-full">
       <StepList>
         <Step
           v-for="(step, index) in stepList"
@@ -18,14 +18,25 @@
           v-slot="{ activateCallback }"
           :value="getStepIndex(index)"
         >
-          <component :is="step.component" />
-          <div class="flex pt-6 justify-end">
+          <component :is="step.component" class="w-full" />
+          <div
+            class="flex pt-6 justify-between"
+            :class="{ '!justify-end': index === 0 }"
+          >
+            <Button
+              v-if="index > 0"
+              label="Previous"
+              :disabled="!cartTotalItemsCount"
+              icon="pi pi-arrow-left"
+              iconPos="left"
+              @click="activateCallback(getStepIndex(index - 1))"
+            />
             <Button
               label="Next"
               :disabled="!cartTotalItemsCount"
               icon="pi pi-arrow-right"
               iconPos="right"
-              @click="activateCallback(getStepIndex(index))"
+              @click="activateCallback(getStepIndex(index + 1))"
             />
           </div>
         </StepPanel>
@@ -59,5 +70,5 @@ const stepList = [
   },
 ];
 
-const getStepIndex = (index) => (index + 1).toString()
+const getStepIndex = (index) => (index + 1).toString();
 </script>

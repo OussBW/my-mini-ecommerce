@@ -20,7 +20,7 @@
         </div>
       </template>
       <template #empty>
-        <div class="p-4">
+        <div class="p-4" data-test-id="emptyCart">
           There are no items in cart yet,
           <RouterLink to="/">click here to check our products!</RouterLink>
         </div>
@@ -42,8 +42,7 @@ import { storeToRefs } from "pinia";
 import CartProductCard from "../molecules/CartProductCard.vue";
 
 const loading = ref(false);
-const { cart, cartTotalValue, cartTotalItemsCount } =
-  storeToRefs(useCartStore());
+const { cart, cartTotalValue } = storeToRefs(useCartStore());
 </script>
 
 <style lang="scss" scoped></style>
