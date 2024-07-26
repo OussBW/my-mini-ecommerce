@@ -1,5 +1,5 @@
 <template>
-  <Toolbar class="mb-4 flex flex-wrap justify-between items-center card" unstyled>
+  <Toolbar class="mb-4 flex flex-wrap justify-between items-center card !p-4" unstyled>
     <template #start>
       <RouterLink
         to="/"

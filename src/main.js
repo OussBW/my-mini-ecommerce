@@ -10,27 +10,27 @@ import i18n from "./i18n/index.js";
 // PrimeVue stuff
 import PrimeVue from "primevue/config";
 import Noir from "./presets/Noir.js";
-// import ConfirmationService from "primevue/confirmationservice";
-// import DialogService from "primevue/dialogservice";
-import OverlayBadge from "primevue/overlaybadge";
 import Drawer from "primevue/drawer";
-import StepList from "primevue/steplist";
-import StepPanels from "primevue/steppanels";
-import StepItem from "primevue/stepitem";
-import Step from "primevue/step";
-import StepPanel from "primevue/steppanel";
+import OverlayBadge from "primevue/overlaybadge";
+import Popover from "primevue/popover";
 import Ripple from "primevue/ripple";
 import Select from "primevue/select";
+import Step from "primevue/step";
+import StepItem from "primevue/stepitem";
+import StepList from "primevue/steplist";
+import StepPanel from "primevue/steppanel";
+import StepPanels from "primevue/steppanels";
 import StyleClass from "primevue/styleclass";
-import ToggleSwitch from "primevue/toggleswitch";
 import Toast from "primevue/toast";
 import ToastService from "primevue/toastservice";
+import ToggleSwitch from "primevue/toggleswitch";
 
 
 const app = createApp(App);
 app.use(createPinia());
 app.use(router);
 app.use(i18n);
+
 // activate PrimeVue theming
 app.use(PrimeVue, {
   theme: {
@@ -42,21 +42,21 @@ app.use(PrimeVue, {
     },
   },
 });
-// app.use(ConfirmationService);
-app.use(ToastService);
-// app.use(DialogService);
 
-app.directive("ripple", Ripple);
-app.directive("styleclass", StyleClass);
+// register PrimeVue components and services
+app.use(ToastService);
+app.component("Drawer", Drawer);
 app.component("OverlayBadge", OverlayBadge);
+app.component("Popover", Popover);
 app.component("Select", Select);
-app.component("StepList", StepList);
-app.component("StepPanels", StepPanels);
-app.component("StepItem", StepItem);
 app.component("Step", Step);
+app.component("StepItem", StepItem);
+app.component("StepList", StepList);
 app.component("StepPanel", StepPanel);
+app.component("StepPanels", StepPanels);
 app.component("Toast", Toast);
 app.component("ToggleSwitch", ToggleSwitch);
-app.component("Drawer", Drawer);
+app.directive("ripple", Ripple);
+app.directive("styleclass", StyleClass);
 
 app.mount("#app");

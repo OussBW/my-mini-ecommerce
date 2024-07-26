@@ -33,13 +33,13 @@ const filteredProducts = ref();
 const search = (event) => {
   // setTimeout is used to debounce typing
   setTimeout(() => {
-    if (!event.query.trim().length) {
-      filteredProducts.value = [...products.value];
-    } else {
-      filteredProducts.value = products.value.filter((product) => {
-        return product.title.toLowerCase().includes(event.query.toLowerCase());
-      });
-    }
+    filteredProducts.value = event.query.length
+      ? [...products.value]
+      : products.value.filter((product) => {
+          return product.title
+            .toLowerCase()
+            .includes(event.query.toLowerCase());
+        });
   }, 250);
 };
 

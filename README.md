@@ -3,7 +3,7 @@ A mini e-shop gallery for POC purposes =)
 
 ## Features
 
-Already packed:
+**MVP:**
 - Product Listing
 - Layout selection (grid/list)
 - Pagination
@@ -14,10 +14,12 @@ Already packed:
 - Sorting
 - Filters
 - Multilanguage with locale switcher
-
-In progress:
 - Rate Product
 - Add to favorites
+- Breadcrumbs
+- Image preview (product details)
+
+**In progress:**
 - Select Delivery Options
 - Payment form
 
