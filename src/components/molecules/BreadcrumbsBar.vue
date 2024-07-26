@@ -14,9 +14,9 @@
           </a>
         </router-link>
         <a v-else :href="item.url" :target="item.target" v-bind="props.action">
-          <span class="text-surface-700 dark:text-surface-0">{{
-            item.label
-          }}</span>
+          <span class="text-surface-700 dark:text-surface-0 font-semibold">
+            {{ item.label }}
+          </span>
         </a>
       </template>
     </Breadcrumb>
@@ -34,9 +34,7 @@ const home = ref({
 });
 
 const items = {
-  productDetails: [
-    { label: "Product details", icon: "pi pi-shopping-bag" },
-  ],
+  productDetails: [{ label: "Product details", icon: "pi pi-shopping-bag" }],
   cart: [{ label: "Checkout", icon: "pi pi-shopping-cart" }],
 };
 

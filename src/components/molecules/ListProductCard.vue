@@ -3,21 +3,26 @@
     class="flex flex-col sm:flex-row sm:items-center p-6 gap-4"
     :class="[firstItemClass]"
   >
-    <div class="md:w-80 relative" :class="{ 'h-full m-8': showDescription }">
-      <Image
-        class="block xl:block mx-auto rounded w-full h-[200px]"
-        :class="{ 'h-full m-8': showDescription }"
-        :src="item.image"
-        :alt="item.title"
-        :preview="showDescription"
-      />
-      <Tag
-        :value="$t('product.instock')"
-        :severity="getSeverity(item)"
-        class="absolute dark:!bg-surface-900"
-        style="left: 4px; top: 4px"
-      />
-    </div>
+    <RouterLink :to="{ name: 'productDetails', params: { product: item.id } }">
+      <div
+        class="md:w-40 relative"
+        :class="{ 'h-full m-8 !w-80': showDescription }"
+      >
+        <Image
+          class="block xl:block mx-auto rounded w-full h-[200px]"
+          :class="{ 'h-full m-8': showDescription }"
+          :src="item.image"
+          :alt="item.title"
+          :preview="showDescription"
+        />
+        <Tag
+          :value="$t('product.instock')"
+          :severity="getSeverity(item)"
+          class="absolute dark:!bg-surface-900"
+          style="left: 4px; top: 4px"
+        />
+      </div>
+    </RouterLink>
     <div
       class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6"
     >
@@ -30,7 +35,11 @@
             class="font-medium text-surface-500 dark:text-surface-400 text-sm"
             >{{ item.category }}</span
           >
-          <div class="text-lg font-medium mt-2">{{ item.title }}</div>
+          <RouterLink
+            :to="{ name: 'productDetails', params: { product: item.id } }"
+          >
+            <div class="text-lg font-medium mt-2">{{ item.title }}</div>
+          </RouterLink>
         </div>
         <ProductRating :rating="getRating(item)" />
         <Panel v-if="showDescription" header="Description">
@@ -66,6 +75,6 @@ const getSeverity = () => {
 
 // a sample of custom directive, only for POC purpose =)
 const vCapitalize = {
-  mounted: (el) => el.style.textTransform = 'capitalize',
+  mounted: (el) => (el.style.textTransform = "capitalize"),
 };
 </script>
