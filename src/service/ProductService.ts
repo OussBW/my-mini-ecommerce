@@ -5,7 +5,7 @@ export const ProductService = {
   getProductsData() {
     return axios.get(`${this.baseURL}/products`);
   },
-  getProductById(productId) {
+  getProductById(productId: string) {
     return axios.get(`${this.baseURL}/products/${productId}`);
   },
 };

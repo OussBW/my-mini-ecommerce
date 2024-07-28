@@ -6,24 +6,25 @@
   <Slider v-model="model" :min :max range class="w-full" />
 </template>
 
-<script setup>
-import { onMounted} from "vue";
+<script setup lang="ts">
+import { onMounted } from 'vue'
 
 const props = defineProps({
   min: {
     type: Number,
-    default: 0,
+    default: 0
   },
   max: {
     type: Number,
-    default: 100,
-  },
-});
-const model = defineModel();
+    default: 100
+  }
+})
+
+const model = defineModel()
 
 onMounted(() => {
-  if(!model.value?.length) {
-    model.value = [props.min, props.max];
+  if (!model.value?.length) {
+    model.value = [props.min, props.max]
   }
-});
+})
 </script>

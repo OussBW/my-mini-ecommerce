@@ -25,27 +25,29 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { useCartStore } from "../../stores/cart";
-import InputNumber from "primevue/inputnumber";
-const props = defineProps({
-  product: { type: Object, required: true },
-  quantity: { type: Number, required: true },
-});
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useCartStore } from '../../stores/cart'
+import InputNumber from 'primevue/inputnumber'
+import type { Product } from '@/domain/product'
+
+const props = defineProps<{
+  product: Product
+  quantity: number
+}>()
 
 const emit = defineEmits(['increment', 'decrement'])
 const productCount = ref(props.quantity)
 
-const {addToCart, removeFromCart} = useCartStore()
+const { addToCart, removeFromCart } = useCartStore()
 
 const addProductToCart = () => {
   addToCart(props.product)
-  productCount.value +=1
-}
-const removeProductFromCart = () => {
-  removeFromCart(props.product.id)
-  productCount.value -=1
+  productCount.value += 1
 }
 
+const removeProductFromCart = () => {
+  removeFromCart(props.product.id)
+  productCount.value -= 1
+}
 </script>

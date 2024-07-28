@@ -26,7 +26,7 @@
   </Toolbar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import HeaderRight from "../atoms/HeaderRight.vue";
 import SearchBar from "./SearchBar.vue";
 </script>

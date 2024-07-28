@@ -11,12 +11,7 @@
 
   <Menu ref="menu" id="overlay_menu" :model="items" :popup="true">
     <template #item="{ item, props }">
-      <a
-        v-ripple
-        class="flex items-center"
-        v-bind="props.action"
-        @click="switchLocale(item.value)"
-      >
+      <a v-ripple class="flex items-center" v-bind="props.action" @click="switchLocale(item.value)">
         <img
           :alt="item.flag"
           src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
@@ -24,39 +19,42 @@
           style="width: 18px"
         />
         <span>{{ item.label }}</span>
-        <i v-if="item.value === locale" class="pi pi-check ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1" />
+        <i
+          v-if="item.value === locale"
+          class="pi pi-check ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"
+        />
       </a>
     </template>
   </Menu>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { useI18n } from "vue-i18n";
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const { locale } = useI18n();
+const { locale } = useI18n()
 
-const menu = ref();
+const menu = ref()
 const items = ref([
   {
-    label: "Language:",
+    label: 'Language:',
     items: [
       {
-        label: "FR",
-        flag: "fr",
-        value: "fr",
+        label: 'FR',
+        flag: 'fr',
+        value: 'fr'
       },
       {
-        label: "EN",
-        flag: "gb",
-        value: "en",
-      },
-    ],
-  },
-]);
+        label: 'EN',
+        flag: 'gb',
+        value: 'en'
+      }
+    ]
+  }
+])
 
-const switchLocale = (value) => (locale.value = value);
-const toggle = (event) => {
-  menu.value.toggle(event);
-};
+const switchLocale = (value: string) => (locale.value = value)
+const toggle = (event: Event) => {
+  menu.value.toggle(event)
+}
 </script>

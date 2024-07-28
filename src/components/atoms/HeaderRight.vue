@@ -12,13 +12,13 @@
         class="inline-flex w-12 h-12 p-0 items-center justify-center surface-0 dark:surface-800 border border-surface-200 dark:border-surface-600 rounded"
         @click="onThemeToggler"
       >
-        <i :class="`dark:text-white pi ${iconClass}`" />
+        <i :class="`dark:text-white pi pi-${iconClass}`" />
       </button>
     </li>
   </ul>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import ButtonCart from "./ButtonCart.vue";
 import LocaleSwitcher from "./LocaleSwitcher.vue";
@@ -27,6 +27,6 @@ const iconClass = ref("pi-moon");
 const onThemeToggler = () => {
   const root = document.getElementsByTagName("html")[0];
   root.classList.toggle("p-dark");
-  iconClass.value = iconClass.value === "pi-moon" ? "pi-sun" : "pi-moon";
+  iconClass.value = iconClass.value === "moon" ? "sun" : "moon";
 };
 </script>

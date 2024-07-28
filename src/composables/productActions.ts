@@ -1,8 +1,10 @@
 import { useCartStore } from "../stores/cart";
 import { useToast } from "primevue/usetoast";
 import { useI18n } from "vue-i18n";
+import type { Product } from "../domain/product";
+import type { Ref } from "vue";
 
-export const useProductActions = (loading, product) => {
+export const useProductActions = (loading: Ref, product: Product) => {
   const toast = useToast();
   const { t } = useI18n();
   const { addToCart } = useCartStore();
