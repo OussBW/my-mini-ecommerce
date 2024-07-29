@@ -14,7 +14,6 @@ describe("Cart step test", () => {
     });
     const cartStrore = useCartStore();
     cartStrore.cart = [];
-    cartStrore.cartTotalValue = 0;
     expect(wrapper.find("[data-test-id=emptyCart]").text()).toContain("click");
   });
 });

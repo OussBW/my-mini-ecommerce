@@ -17,7 +17,7 @@
         />
         <Tag
           :value="$t('product.instock')"
-          :severity="getSeverity(item)"
+          :severity="getSeverity()"
           class="absolute dark:!bg-surface-900"
           style="left: 4px; top: 4px"
         />
@@ -68,13 +68,13 @@ defineProps({
 const firstItemClass =
   "[&:not(:first-of-type)]:border-t [&:not(:first-of-type)]:border-surface-200 [&:not(:first-of-type)]:dark:border-surface-700";
 
-const getRating = (item) => item.rating.rate.toString();
+const getRating = (item: any) => item.rating.rate.toString();
 const getSeverity = () => {
   return "success";
 };
 
 // a sample of custom directive, only for POC purpose =)
 const vCapitalize = {
-  mounted: (el) => (el.style.textTransform = "capitalize"),
+  mounted: (el: HTMLElement) => (el.style.textTransform = "capitalize"),
 };
 </script>

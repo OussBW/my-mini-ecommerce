@@ -11,7 +11,7 @@
       />
       <Tag
         value="INSTOCK"
-        :severity="getSeverity(product)"
+        :severity="getSeverity()"
         class="absolute dark:!bg-surface-900"
         style="left: 4px; top: 4px"
       ></Tag>
@@ -47,8 +47,8 @@ const props = defineProps({
 
 const { product, quantity } = props.item
 
-const getRating = (item) => item.rating.rate.toString();
-const getSeverity = (product) => {
+const getRating = (item: any) => item.rating.rate.toString();
+const getSeverity = () => {
   return "success";
   // switch (product.inventoryStatus) {
   //   case "INSTOCK":

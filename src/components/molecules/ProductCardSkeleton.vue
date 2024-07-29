@@ -49,7 +49,7 @@ defineProps({
   layout: {
     type: String,
     default: "grid",
-    validator(value) {
+    validator(value: string) {
       return ["grid", "list"].includes(value);
     },
   },
