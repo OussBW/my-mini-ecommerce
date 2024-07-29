@@ -96,10 +96,9 @@ const ListProductCard = defineAsyncComponent(() => import('../molecules/ListProd
 const { sortOptions, sortKey, sortOrder, sortField, onSortChange } = useSort()
 const { filteredProducts, productFilters } = storeToRefs(useProductStore())
 
-const hasFilters = computed(() => {
-  console.log(productFilters.value)
-  return productFilters.value?.categories?.length || productFilters.value?.prices?.length
-})
+const hasFilters = computed(
+  () => productFilters.value?.categories?.length || productFilters.value?.prices?.length
+)
 const { loadProducts } = useProductStore()
 const loading = ref(true)
 const layout = ref('grid')

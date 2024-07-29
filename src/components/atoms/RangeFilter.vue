@@ -20,7 +20,7 @@ const props = defineProps({
   }
 })
 
-const model = defineModel()
+const model = defineModel<number[]>({default: []})
 
 onMounted(() => {
   if (!model.value?.length) {

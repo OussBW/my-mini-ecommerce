@@ -70,5 +70,5 @@ const stepList = [
   },
 ];
 
-const getStepIndex = (index) => (index + 1).toString();
+const getStepIndex = (index: number) => (index + 1).toString();
 </script>

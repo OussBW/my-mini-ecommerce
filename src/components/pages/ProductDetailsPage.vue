@@ -17,11 +17,9 @@ const product = ref({});
 const loading = ref(true);
 
 onMounted(() =>
-  ProductService.getProductById(productId.value).then(({ data }) => {
+  ProductService.getProductById(productId.value.toString()).then(({ data }) => {
     product.value = data;
     loading.value = false;
   })
 );
 </script>
-
-<style lang="scss" scoped></style>

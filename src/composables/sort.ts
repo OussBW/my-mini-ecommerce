@@ -14,7 +14,7 @@ export const useSort = () => {
   const sortOrder = ref();
   const sortField = ref();
 
-  const onSortChange = ({ value }) => {
+  const onSortChange = ({ value }: any) => {
     // the value variable represents an option of the sortOpions array
     const { value: optionValue } = value;
     const isReverse = optionValue.indexOf("!") === 0;
