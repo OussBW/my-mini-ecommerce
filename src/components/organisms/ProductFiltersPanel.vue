@@ -1,10 +1,6 @@
 <template>
   <div class="card flex justify-start">
-    <Drawer
-      class="!w-full md:!w-80 lg:!w-[30rem]"
-      v-model:visible="visible"
-      header="Filters"
-    >
+    <Drawer class="!w-full md:!w-80 lg:!w-[30rem]" v-model:visible="visible" header="Filters">
       <Panel class="mb-4" header="Category" toggleable>
         <MultiSelectFilter
           :options="productCategories"
@@ -17,6 +13,7 @@
           v-model="filters.prices"
           :min="priceRanges[0]"
           :max="priceRanges[1]"
+          :key="refreshKey"
         />
       </Panel>
       <template #footer>
@@ -28,9 +25,7 @@
             label="Reset Filters"
             @click="resetFilters"
           />
-          <Button class="mr-2" outlined @click="visible = false">
-            Cancel
-          </Button>
+          <Button class="mr-2" outlined @click="visible = false"> Cancel </Button>
           <Button label="Save" @click="saveFilters" />
         </div>
       </template>
@@ -38,30 +33,39 @@
   </div>
 </template>
 
-<script setup>
-import { storeToRefs } from "pinia";
-import { useProductStore } from "../../stores/product";
-import MultiSelectFilter from "../atoms/MultiSelectFilter.vue";
-import { reactive } from "vue";
-import RangeFilter from "../atoms/RangeFilter.vue";
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useProductStore } from '@/stores/product'
+import MultiSelectFilter from '../atoms/MultiSelectFilter.vue'
+import RangeFilter from '../atoms/RangeFilter.vue'
+import type { ProductFilter } from '@/domain/productFilter'
 
-const { productCategories, priceRanges, productFilters } =
-  storeToRefs(useProductStore());
+const { productCategories, priceRanges, productFilters } = storeToRefs(useProductStore())
 
-const filters = reactive({
+const filters = reactive<ProductFilter>({
   categories: [],
-  prices: [],
-});
-const visible = defineModel();
+  prices: []
+})
+const visible = defineModel<boolean>()
+const refreshKey = ref(0)
 
 const saveFilters = () => {
-  productFilters.value = { ...filters };
-  visible.value = false;
-};
+  console.log(filters.prices.length)
+  if (filters.categories.length || filters.prices.length) {
+    productFilters.value = { ...filters }
+  }
+
+  visible.value = false
+}
 
 const resetFilters = () => {
-  filters.categories = [];
-  filters.prices = [priceRanges.value[0], priceRanges.value[1]];
-  productFilters.value = {};
-};
+  filters.categories = []
+  filters.prices = [] //[priceRanges.value[0], priceRanges.value[1]]
+  productFilters.value = {
+    categories: [],
+    prices: []
+  }
+  refreshKey.value++
+}
 </script>

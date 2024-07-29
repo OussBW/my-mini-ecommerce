@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import CartProductActions from "../atoms/CartProductActions.vue";
 import ProductRating from "../atoms/ProductRating.vue";
 

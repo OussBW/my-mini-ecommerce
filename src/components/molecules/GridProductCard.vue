@@ -49,7 +49,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ProductActions from "../atoms/ProductActions.vue";
 import ProductRating from "../atoms/ProductRating.vue";
 

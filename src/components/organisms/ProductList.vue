@@ -9,9 +9,7 @@
       :sortField
     >
       <template #header>
-        <div
-          class="flex justify-between w-full flex-wrap md:flex-nowrap items-start"
-        >
+        <div class="flex justify-between w-full flex-wrap md:flex-nowrap items-start">
           <div class="flex justify-between flex-wrap md:justify-start w-full mb-2">
             <Select
               v-model="rows"
@@ -30,9 +28,8 @@
           </div>
           <div class="flex justify-between w-full md:justify-end">
             <!-- display a small badge if any filters are activated -->
-            <OverlayBadge v-if="hasFilters" severity="danger">
+            <OverlayBadge v-if="hasFilters" class="mr-2" severity="danger">
               <Button
-                class="mr-2"
                 :label="$t('productList.filter')"
                 icon="pi pi-filter"
                 outlined
@@ -48,15 +45,9 @@
               outlined
               @click="showFilters = !showFilters"
             />
-            <SelectButton
-              v-model="layout"
-              :options="options"
-              :allowEmpty="false"
-            >
+            <SelectButton v-model="layout" :options="options" :allowEmpty="false">
               <template #option="{ option }">
-                <i
-                  :class="[option === 'list' ? 'pi pi-bars' : 'pi pi-table']"
-                />
+                <i :class="['pi', option === 'list' ? 'pi-bars' : 'pi-table']" />
               </template>
             </SelectButton>
           </div>
@@ -68,11 +59,7 @@
             <ProductCardSkeleton v-for="index in 12" :key="index" :layout />
           </template>
           <template v-else>
-            <ListProductCard
-              v-for="(item, index) in slotProps.items"
-              :key="index"
-              :item
-            />
+            <ListProductCard v-for="(item, index) in slotProps.items" :key="index" :item />
           </template>
         </div>
       </template>
@@ -83,12 +70,7 @@
             <ProductCardSkeleton v-for="index in 12" :key="index" :layout />
           </template>
           <template v-else>
-            <GridProductCard
-              v-for="(item, index) in slotProps.items"
-              :key="index"
-              :loading
-              :item
-            />
+            <GridProductCard v-for="(item, index) in slotProps.items" :key="index" :loading :item />
           </template>
         </div>
       </template>
@@ -97,50 +79,42 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, computed, defineAsyncComponent } from "vue";
-import { storeToRefs } from "pinia";
-import { useProductStore } from "../../stores/product";
-import { useSort } from "../../composables/sort";
+<script setup lang="ts">
+import { ref, onMounted, computed, defineAsyncComponent } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useProductStore } from '../../stores/product'
+import { useSort } from '../../composables/sort'
 
 // lazy loading some components for better perf
-const GridProductCard = defineAsyncComponent(
-  () => import("../molecules/GridProductCard.vue")
-);
+const GridProductCard = defineAsyncComponent(() => import('../molecules/GridProductCard.vue'))
 const ProductCardSkeleton = defineAsyncComponent(
-  () => import("../molecules/ProductCardSkeleton.vue")
-);
-const ProductFiltersPanel = defineAsyncComponent(
-  () => import("./ProductFiltersPanel.vue")
-);
-const ListProductCard = defineAsyncComponent(
-  () => import("../molecules/ListProductCard.vue")
-);
+  () => import('../molecules/ProductCardSkeleton.vue')
+)
+const ProductFiltersPanel = defineAsyncComponent(() => import('./ProductFiltersPanel.vue'))
+const ListProductCard = defineAsyncComponent(() => import('../molecules/ListProductCard.vue'))
 
-const { sortOptions, sortKey, sortOrder, sortField, onSortChange } = useSort();
-const { filteredProducts, productFilters } = storeToRefs(useProductStore());
+const { sortOptions, sortKey, sortOrder, sortField, onSortChange } = useSort()
+const { filteredProducts, productFilters } = storeToRefs(useProductStore())
 
 const hasFilters = computed(() => {
-  return (
-    productFilters.value?.categories?.length ||
-    productFilters.value?.prices?.length
-  );
-});
-const { loadProducts } = useProductStore();
-const loading = ref(true);
-const layout = ref("grid");
-const options = ref(["list", "grid"]);
-const rows = ref({ value: 5 });
-const showFilters = ref(false);
+  console.log(productFilters.value)
+  return productFilters.value?.categories?.length || productFilters.value?.prices?.length
+})
+const { loadProducts } = useProductStore()
+const loading = ref(true)
+const layout = ref('grid')
+const options = ref(['list', 'grid'])
+const rows = ref({ value: 5 })
+const showFilters = ref(false)
 const rowsOptions = ref([
-  { label: "3", value: 3 },
-  { label: "6", value: 6 },
-  { label: "12", value: 12 },
-]);
+  { label: '3', value: 3 },
+  { label: '6', value: 6 },
+  { label: '12', value: 12 }
+])
 
 onMounted(() => {
   loadProducts().then(() => {
-    loading.value = false;
-  });
-});
+    loading.value = false
+  })
+})
 </script>

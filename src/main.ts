@@ -6,10 +6,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
 import router from "./router";
-import i18n from "./i18n/index.js";
+import i18n from "./i18n";
 // PrimeVue stuff
 import PrimeVue from "primevue/config";
-import Noir from "./presets/Noir.js";
+import Noir from "./presets/Noir";
 import Drawer from "primevue/drawer";
 import OverlayBadge from "primevue/overlaybadge";
 import Popover from "primevue/popover";

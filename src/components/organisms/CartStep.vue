@@ -5,18 +5,12 @@
     <DataView :value="cart" layout="list">
       <template #list="slotProps">
         <div class="flex flex-col w-full pt-6 pb-6">
-          <template v-if="loading">
-            <ProductCardSkeleton v-for="index in 12" :key="index" :layout />
-          </template>
-          <template v-else>
-            <CartProductCard
-              v-for="(item, index) in slotProps.items"
-              :key="index"
-              :item="item"
-              layout="list"
-              :loading
-            />
-          </template>
+          <CartProductCard
+            v-for="(item, index) in slotProps.items"
+            :key="index"
+            :item="item"
+            layout="list"
+          />
         </div>
       </template>
       <template #empty>
@@ -35,14 +29,10 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { useCartStore } from "../../stores/cart";
-import { storeToRefs } from "pinia";
-import CartProductCard from "../molecules/CartProductCard.vue";
+<script setup lang="ts">
+import { useCartStore } from '@/stores/cart'
+import { storeToRefs } from 'pinia'
+import CartProductCard from '@/components/molecules/CartProductCard.vue'
 
-const loading = ref(false);
-const { cart, cartTotalValue } = storeToRefs(useCartStore());
+const { cart, cartTotalValue } = storeToRefs(useCartStore())
 </script>
-
-<style lang="scss" scoped></style>

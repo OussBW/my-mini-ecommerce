@@ -5,7 +5,7 @@
     <ProductFiltersPanel />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ProductList from '@/components/organisms/ProductList.vue';
 import ProductFiltersPanel from "@/components/organisms/ProductFiltersPanel.vue"
 

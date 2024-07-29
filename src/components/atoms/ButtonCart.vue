@@ -11,7 +11,7 @@
     </RouterLink>
   </template>
   
-  <script setup>
+  <script setup lang="ts">
   import { storeToRefs } from "pinia";
   import { useCartStore } from "../../stores/cart";
   
